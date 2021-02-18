@@ -1,0 +1,11 @@
+Note 1:
+Includes a create statement for the Inventory table since Shipments references Inventory's primary key IID. I implemented this under the assumption Inventory holds various shipping rates/types such as Priority etc and that including the IID in any particular order in the Shipments table would identify which shipment type it is.
+
+Note 2:
+The IDs for each table are auto incremented integers because that functionality already exists in MySQL. If we want to make them strings then we would need to implement triggers that would update the ID when anyone tries to add a row to the table.
+
+Note 3:
+In the Shipments table, the WID is included to keep track of where the shipment originated from for return purposes (unless it is fine to return the shipment to any warehouse). The WID is set to a default value of 0 if none is entered. This is for if the shipment has not yet been shipped, but the order has been created. You can find all yet-to-be shipped items via selected all rows with a WID of 0. May not be necessary logic but I included it, idk.
+
+Question 1:
+Do we want to include contact information like a phone number for the warehouses?
