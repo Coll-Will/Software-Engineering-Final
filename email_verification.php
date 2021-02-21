@@ -1,6 +1,6 @@
 
 <?php
-include 'config.php';
+include 'session.php';
 if(!empty($_GET['code']) && isset($_GET['code']))
 {
 $code=$_GET['code'];
