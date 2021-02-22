@@ -40,8 +40,8 @@ if($_SERVER["REQUEST_METHOD"]=="POST" && isset($_POST['submit']))
             {
                 $insertQuery=$db->prepare("INSERT INTO users (name, email, password)
                 VALUES(?,?,?);");
-                $insertQuery->bind_param("sss", $fullname, %email, %password_hash);
-                $result=%insertQuery->execute();
+                $insertQuery->bind_param("sss", $fullname, $email, $password_hash);
+                $result=$insertQuery->execute();
                 if($result) 
                 {
                     $error.='<p class="success">Registration successful!</p>';
