@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <title>Where&#39;s Walldo? | Package Tracking</title>
+  <title>Where's Walldo? | Package Tracking</title>
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -53,7 +53,7 @@
             </div>
 
             <div class="w3-third w3-center">
-              <img src="./images/Walldo.jpg" alt="Walldo.jpg" width="200" height="200">
+              <img src="./images/Walldo.jpg" alt="Walldo.jpg" width="375" height="300">
             </div>
           </div>
         </div>
@@ -67,7 +67,7 @@
 
             <div class="w3-twothird">
               <h1>Who are we?</h1>
-              <h5 class="w3-padding-32">The Where&#39;s Walldo company, established in 2021, is a business of people. We may ship packages, but our goal with every shipment is to connect people from all over the world. We are dedicated to safe, secure, and reliable shipping for all of our thousands of customers.</h5>
+              <h5 class="w3-padding-32">The Where's Walldo company, established in 2021, is a business of people. We may ship packages, but our goal with every shipment is to connect people from all over the world. We are dedicated to safe, secure, and reliable shipping for all of our thousands of customers.</h5>
 
             </div>
           </div>
