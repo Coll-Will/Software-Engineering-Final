@@ -1,6 +1,7 @@
 <?php
 require_once "config.php";
 require_once "session.php";
+require_once "pageformat.php";
 
 if($_SERVER["REQUEST_METHOD"]=="POST" && isset($_POST['submit'])) 
 {
@@ -9,7 +10,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST" && isset($_POST['submit']))
     $password=trim($_POST['password']);
     $confirm_password=trim($_POST['confirm_password']);
     $password_hash=password_hash($password, PASSWORD_BCRYPT);
-    if($query=$db->prepare("SLECT * FROM users WHERE email = ?")) 
+    if($query=$db->prepare("SELECT * FROM customers WHERE email = ?")) 
     {
         $error='';
         /* Binding parameters */
@@ -19,81 +20,50 @@ if($_SERVER["REQUEST_METHOD"]=="POST" && isset($_POST['submit']))
         if($query->num_rows >0) 
         {
             $error.='<p class="error">Email address is already registered!</p>';
+            header("Location:signup.php?msg=Email+address+is+already+registered!");
+
         } else 
         {
             //validates password
             if(strlen($password) < 8) 
             {
                 $error.='<p class="error">Passwords must contain at least 8 characters.</p>';
+                header("Location:signup.php?msg=Password+must+be+at+least+8+characters");
             }
             //validates confirm password
             if(empty($confirm_password)) 
             {
                 $error.='<p class="error">Please confirm password.</p>';
+                header("Location:signup.php?msg=Please+Confirm+Password");
             } else {
-                if(empty$error) && ($password!=$confirm_password) 
+                if($password!=$confirm_password) 
                 {
                     $error.='<p class="error">Passwords do not match.</p>';
+                    header("Location:signup.php?msg=Passwords+Do+Not+Match");
                 }
             }
             if(empty($error)) 
             {
-                $insertQuery=$db->prepare("INSERT INTO users (name, email, password)
-                VALUES(?,?,?);");
-                $insertQuery->bind_param("sss", $fullname, %email, %password_hash);
-                $result=%insertQuery->execute();
+                $name = explode(" ", $fullname);
+                $insertQuery=$db->prepare("INSERT INTO customers (fname, lname, email, pass) VALUES(?,?,?,?);");
+                $insertQuery->bind_param("ssss", $name[0],$name[1], $email, $password_hash);
+                $result=$insertQuery->execute();
                 if($result) 
-                {
+                { 
                     $error.='<p class="success">Registration successful!</p>';
+                    $_SESSION['sessionID'] = '1';
+                    header("Location:index.php");
                 }
                 else 
                 {
                     $error.='<p class="error">Something went wrong!</p>';
+                    header("Location:signup.php?msg=Something+Went+Wrong");
                 }
+                $insertQuery->close();
             }
         }
+        $query->close(); 
     }
-    $query->close();
-    $insertQuery->close();
     mysqli_close($db); //closes DB connection
-    }
+}
 ?>
-/*start HTML portion*/
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>Register</title>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    </head>
-    <body>
-        <div class="container">
-            <div class="row">
-                <h2>Register</h2>
-                <p>Fill in the information below to create an account.</p>
-                <form action="" method="post">
-                    <div class="form-group">
-                        <label>Full Name</label>
-                        <input type="text" name="name" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Email Address</label>
-                        <input type="email" name="email" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Password</label>
-                        <input type="password" name="password" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Confirm Password</label>
-                        <input type="password" name="cofirm_password" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="submit" name="submit" class="btn btn-primary" value="Submit">
-                    </div>
-                    <p>Already have an account? <a href="login.php">Login here</a>!</p>
-                </form>
-            </div>
-        </div>
-    </body>
-</html>
