@@ -1,5 +1,5 @@
 <?php
-  require_once "pageformat.php";
+  require_once "../pageformat.php";
   pagenavbar();
 ?>
 <!DOCTYPE html>

@@ -1,66 +1,42 @@
-<?php
-require_once "config.php";
-require_once "session.php";
-$error='';
-if($_SERVER["REQUEST METHOD"]=="POST" && isset($_POST['submit'])) 
-{
-    $email=trim($_POST['email']);
-    $password=trim($_POST['password']);
-    //check if email is empty
-    if(empty($email)) 
-    {
-        $error.='<p class="error">Please enter your email.</p>';
-    }
-    //check if password is empty
-    if(empty($password)) 
-    {
-        $error.='<p class="erorr">Please enter your password.</p>';
-    }
-    if(empty($error)) 
-    {
-        if($query=$db->prepare("SELECT * FROM users WHERE email=?")) 
-        {
-            $query->bind_param('s', $email);
-            $query->execute();
-            $row=$query->fetch();
-            if($row) 
-            {
-                if(password_verify($password, $row['password'])) {
-                    $_SESSION["userid"] = $row['id'];
-                    $_SESSION["user"]=$row;
-                    //redirects to welcome page
-                    header("location: welcome.php");
-                    exit;
-                } else 
-                {
-                    $error.='<p class="error">Password not valid.</p>';
-                }
-            } else 
-            {
-                $error.='<p class="error">No account registered with that email address!</p>';
-            }
-        }
-        $query->close();
-    }
-    mysqli_close($db);
-}
+<?php 
+    require_once "../pageformat.php";
+    pagenavbar();
 ?>
-/*start HTML portion*/
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8">
         <title>Login</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+        <style>
+            html,body {
+                height:100%;
+                width:100%;
+                margin:0;
+            }
+            body , body {
+                display:flex;
+                margin-top:13%;
+            }
+            form {
+                margin:auto;
+            }
+        </style>
     </head>
     <body>
         <div class="container">
             <div class="row">
-                <h2>Login</h2>
-                <p>Enter your email and password.</p>
-                <form action="" method="post">
+                <form action="./loginHandler.php" method="post">
+                    <?php
+                    if(isset($_GET["msg"]))
+                    {
+                        $msg = $_GET["msg"];
+                        echo "<h4 class = \"text-danger\" style =\"text-align:center;\">$msg</h4>";
+                    }
+                    ?>
+                    <h2 style = "text-align: center">Login</h2>
                     <div class="form-group">
-                        <label>Emial Address</label>
+                        <label>Email Address</label>
                         <input type="email" name="email" class="form-control" required>
                     </div>
                     <div class="form-group">
@@ -68,9 +44,9 @@ if($_SERVER["REQUEST METHOD"]=="POST" && isset($_POST['submit']))
                         <input type="password" name="password" class="form-control" required>
                     </div>
                     <div class="form-group">
-                        <input type="submit" name="submit" class="btn btn-primary" value="Submit">
+                        <input type="submit" name="submit" class="btn btn-secondary" value="Submit">
                     </div>
-                    <p>Don't have an account yet? <a href="register.php">Register here</a>!</p>
+                    <p>Don't have an account yet? <a href="signup.php">Register here</a>!</p>
                 </form>
             </div>
         </div>
