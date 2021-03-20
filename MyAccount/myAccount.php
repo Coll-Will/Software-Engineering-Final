@@ -1,4 +1,5 @@
 <?php
+  #pageformat pagenavbar() has been edited to include Orders.
   require_once "pageformat.php";
   include_once("databaseConnection.php");
   pagenavbar();
@@ -71,12 +72,6 @@
 ?>
 
  <!-- WEBPAGE -->
- <!-- Trello Comment: Webpage should show users Username, email, and blurred password
-      with options to change the username and the password, as well
-      as a button leading to the users order page -->
-<!-- My Comment: pageformat pagenavbar() has been edited to include Orders.
-     The link supplied does not work yet, of course.
-     The CID is hardcoded as I am a bit confused as how to retrieve the currently logged in user.-->
  <!DOCTYPE html>
  <html lang="en">
  <link rel="stylesheet" href="styles.css"> <meta charset="utf-8">
