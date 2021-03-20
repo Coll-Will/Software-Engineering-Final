@@ -6,7 +6,7 @@
   $errstring = "";
   $CID = null;
 
-  if(session_status() === PHP_SESSION_ACTIVE) $CID = 1; #$_SESSION["userid"];
+  if(session_status() === PHP_SESSION_ACTIVE) $CID = $_SESSION["userid"];
   else header("location: login.php");
 
   # --- GET FUNCTIONS --- #
