@@ -1,17 +1,19 @@
 <?php
   require_once "pageformat.php";
-  include_once('databaseConnection.php');
+  include_once("databaseConnection.php");
   pagenavbar();
-  # --- VARS --- #
-  $CID = 1;
+  # --- VARS / get userid from session --- #
   $errstring = "";
+  $CID = null;
+
+  if(session_status() === PHP_SESSION_ACTIVE) $CID = 1; #$_SESSION["userid"];
+  else header("location: login.php");
+
   # --- GET FUNCTIONS --- #
   function getFirstName($id){
     $conn = connectDB();
     $query = $conn->query("SELECT fname FROM customers WHERE CID = $id");
-    if(!$query){
-      echo "Could not run query: " . $conn->error;
-    }
+    if(!$query) $errstring = "Could not run query: " . $conn->error;
     $record = $query->fetch_row();
     $fname = $record[0];
     echo $fname;
@@ -21,9 +23,7 @@
   function getLastName($id){
     $conn = connectDB();
     $query = $conn->query("SELECT lname FROM customers WHERE CID = $id");
-    if(!$query){
-      echo "Could not run query: " . $conn->error;
-    }
+    if(!$query) $errstring = "Could not run query: " . $conn->error;
     $record = $query->fetch_row();
     $name = $record[0];
     echo $name;
@@ -33,30 +33,22 @@
   function getEmail($id){
     $conn = connectDB();
     $query = $conn->query("SELECT email FROM customers WHERE CID = $id");
-    if(!$query){
-      echo "Could not run query: " . $conn->error;
-      #exit;
-    }
+    if(!$query) echo "Could not run query: " . $conn->error;
     $record = $query->fetch_row();
     $email = $record[0];
     echo $email;
     $query->close();
     $conn->close();
-    return $email;
   }
   function getPassword($id){
     $conn = connectDB();
     $query = $conn->query("SELECT pass FROM customers WHERE CID = $id");
-    if(!$query){
-      echo "Could not run query: " . $conn->error;
-      #exit;
-    }
+    if(!$query) $errstring = "Could not run query: " . $conn->error;
     $record = $query->fetch_row();
     $pass = $record[0];
     echo $pass;
     $query->close();
     $conn->close();
-    return $pass;
   }
   # --- SUBMIT STUFF --- #
   if(isset($_POST['submit'])) {
