@@ -9,10 +9,14 @@
     # Randomly choose a MID between 1 and the number of manufacturers in the table
     $MID = rand(1, $max[0]);
     $query->close();
+    # Retrieve that specific manufacturer
+    $query = $conn->query("SELECT MID, street, city, state, zip
+      FROM manufacturers WHERE MID = $MID");
+    $record = $query->fetch_row();
     $conn->close();
-    # Return the MID if called from HTML
-    echo $MID;
-    # Return MID if called from PHP
-    return $MID;
+    # Return the MID + address if called from HTML
+    echo $record
+    # Return MID + address if called from PHP
+    return $record;
   }
  ?>
