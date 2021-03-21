@@ -14,8 +14,6 @@
       FROM manufacturers WHERE MID = $MID");
     $record = $query->fetch_row();
     $conn->close();
-    # Return the MID + address if called from HTML
-    echo $record
     # Return MID + address if called from PHP
     return $record;
   }
