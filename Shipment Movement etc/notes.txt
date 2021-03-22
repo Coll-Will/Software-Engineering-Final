@@ -1,0 +1,3 @@
+toIntransit requires: config.php, dismatrix.php, randomManufacturer.php, and randomWarehouse.php
+randomManufacturer and randomWarehouse get passed the $db variable via toInTransit, as requiring config in all files caused problems.
+Change require paths to however it is on your computer to run.
