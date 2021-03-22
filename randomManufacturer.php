@@ -1,6 +1,6 @@
 <?php
   function randomManufacturer(){
-    require_once "environment/config.php";
+    require_once "../config.php";
     $record = "";
     # Get the number of manufacturers in the table
     if($query=$db->prepare("SELECT COUNT(DISTINCT MID) FROM manufacturer")){
