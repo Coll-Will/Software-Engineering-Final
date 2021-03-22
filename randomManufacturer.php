@@ -1,20 +1,27 @@
 <?php
-  include_once('databaseConnection.php');
   function randomManufacturer(){
-    $conn = connectDB();
+    require_once "environment/config.php";
+    $record = "";
     # Get the number of manufacturers in the table
-    $query = $conn->query("SELECT COUNT(DISTINCT MID) FROM manufacturers");
-    if(!$query) echo "Could not run query: " . $conn->error;
-    $max = $query->fetch_row();
+    if($query=$db->prepare("SELECT COUNT(DISTINCT MID) FROM manufacturer")){
+        $query->execute();
+        $query->bind_result($max);
+        $query->fetch();
+        $query->close();
+    }
+    else echo "Could not run query";
     # Randomly choose a MID between 1 and the number of manufacturers in the table
     $MID = rand(1, $max[0]);
-    $query->close();
     # Retrieve that specific manufacturer
-    $query = $conn->query("SELECT MID, street, city, state, zip
-      FROM manufacturers WHERE MID = $MID");
-    $record = $query->fetch_row();
-    $conn->close();
-    # Return MID + address if called from PHP
+    if($query=$db->prepare("SELECT MID, street, city, state, zip, latitude, longitude
+      FROM manufacturer WHERE MID = $MID")){
+        $query->execute();
+        $query->bind_result($mid, $street, $city, $state, $zip, $latitude, $longitude);
+        $query->fetch();
+        $record = array($mid, $street, $city, $state, $zip, $latitude, $longitude);
+        echo $record[1];
+        $query->close();
+    }
     return $record;
   }
  ?>
