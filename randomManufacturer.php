@@ -19,7 +19,6 @@
         $query->bind_result($mid, $street, $city, $state, $zip, $latitude, $longitude);
         $query->fetch();
         $record = array($mid, $street, $city, $state, $zip, $latitude, $longitude);
-        echo $record[1];
         $query->close();
     }
     return $record;
