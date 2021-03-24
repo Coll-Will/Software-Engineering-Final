@@ -1,8 +1,0 @@
-**Used as base for each php file, will be editing any css but current stylesheet is also from this website: https://dzone.com/articles/ceate-a-login-system-using-html-php-and-mysql**
-For config.php, may need to edit defines of each database operation in order to match SQL code used in database.
-For welcome.php, may need to edit any calls to the database SQL in order to match. Session echo displays name associated with the account in the database.
-When pressing "log out", should bring user back to login page.
-For register.php, requires config.php and session.php to be called once. Again, make sure any SQL calls match database. When entering information, binds parameters and then stores results to check against database. In case of match, error is called. Next the password is validated and must be at least 8 characters long. Passwords must match to confirm password before account is created.
-Will display a success or error message. Closes database connection once completed.
-In login.php, match any SQL calls to database. If email or password is empty, error called. Binds parameters to check against database, and then must verify password against database. If invalid, error message called. Else if no account matches in database, error message is called.
-session.php validates session and brings user to welcome page.
