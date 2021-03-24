@@ -1,0 +1,14 @@
+Logging into hosting site:
+
+hosting site:	000website.com
+email:		sharon310234@gmail.com
+password: 	Password01!
+websitename:	WheresWalldo
+
+
+Connecting to database:
+
+DBname: 	id16184555_whereswalldo
+DBuser:		id16184555_username
+DBpassword:	Password1234!
+DBhost:		localhost
