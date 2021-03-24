@@ -1,9 +1,0 @@
-toIntransit requires: config.php, dismatrix.php, randomManufacturer.php, and randomWarehouse.php
-
-May eventually be removed from functionality: distance calculated by dismatrix.php is stored in the shipments table (field remaining_dist) for use by my original moveOrder.
-
-moveOrder I have placed in blocked because it needs the shortest path data to move an order from warehouse to warehouse with additional database requirements.
-
-randomManufacturer and randomWarehouse get passed the $db variable via toInTransit, as requiring once config.php in all files causes problems.
-
-Change require paths to however it is on your computer, and add remaining_dist field or comment out the distance updating code in order to run.
