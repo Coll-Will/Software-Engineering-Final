@@ -1,2 +1,0 @@
-pageformat pagenavbar() has been edited to include Orders. The link supplied is a dummy link and does not work yet, ofc.
-The CID is hardcoded as I am a bit confused as how to retrieve the currently logged in user.
