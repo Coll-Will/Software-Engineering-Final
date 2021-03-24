@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="pymt.css">
+    </head>
+    <body>
+        <div class="wrapper">
+            <div class="container">
+                <form action="">
+                <h1>Enter Shipping ID</h1>
+                <div class="shippingid">
+                    <div>
+                        <input type="text" name="shippingid">
+                    </div>
+                    <div class="btns">
+                        <button id="shpmnt">Submit</button>
+                    </div>
+                </div>
+                <script>
+                    document.getElementById('shpmnt').addEventListener("click", dateFunction);
+                    function dateFunction() {
+                        var today = new Date(); 
+                        var business_days = 5;
+
+                        var deliveryDate = today; //incremented by the for loop
+                        var total_days = business_days; //used by the for loop
+                        for(var days=1; days <= total_days; days++) 
+                        {
+                            deliveryDate = new Date(today.getTime() + (days*24*60*60*1000));
+                            if(deliveryDate.getDay() == 0 || deliveryDate.getDay() == 6) 
+                            {
+                                total_days++
+                            }
+                        }    
+                    document.write(" Your expected delivery date is " + deliveryDate);
+                    }
+                </script>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>
