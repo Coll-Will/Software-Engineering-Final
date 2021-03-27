@@ -1,5 +1,5 @@
 <?php
-    require_once "../pageformat.php";
+    require_once "../../pageformat.php";
     if(!isset($_SESSION['sessionID']))
     {
         die("UNAUTHORIZED ACCESS DENIED");

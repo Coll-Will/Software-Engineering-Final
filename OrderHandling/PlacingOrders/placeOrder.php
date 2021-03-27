@@ -1,6 +1,6 @@
 <?php
-require_once "../config.php";
-require_once "../session.php";
+require_once "../../config.php";
+require_once "../../session.php";
 if($_SERVER["REQUEST_METHOD"]=="POST" && isset($_POST['submit'])) 
 {	
     $fname=trim($_POST['f-name']);
@@ -14,8 +14,8 @@ if($_SERVER["REQUEST_METHOD"]=="POST" && isset($_POST['submit']))
     $expiration=trim($_POST['expire']);
     $ccv=$_POST['security'];
     
-    //code will assume the customer is logged in for the time being, also the ability to get the product information will have to be added later
-    $custID = $_SESSION['CID'];
+
+    $custID = $_SESSION['sessionID'];
     //adds address information to customer account table
 	if($updateQuery=$db->prepare("UPDATE customers SET street = ?, city = ?, state = ?, zip = ? WHERE CID = ?"))
     {
@@ -33,12 +33,13 @@ if($_SERVER["REQUEST_METHOD"]=="POST" && isset($_POST['submit']))
     }
 
     //takes information from the customer table, inventory table, and warhouse table and adds it to the Shipments table to make the shipment in progress
-    if($query=$db->prepare("INSERT INTO shipments (IID,CID,WID,to_street,to_city,to_state,to_zip,cancel,refund)VALUES (?,?,?,?,?,?,?,?,?)"))//This is the issue 
+    if($query=$db->prepare("INSERT INTO shipments (IID,CID,MID,WID,to_street,to_city,to_state,to_zip,cancel,refund)VALUES (?,?,?,?,?,?,?,?,?,?)"))//This is the issue 
     {
     	$invID = 1;
     	$warhID = 1;//temporary hard coded
+    	$manID = 1;
     	$N = "N";
-        $query->bind_param('iiisssiss', $invID,$custID,$warhID,$address,$city,$state, $zipcode,$N,$N);
+        $query->bind_param('iiiisssiss', $invID,$custID,$manID,$warhID,$address,$city,$state,$zipcode,$N,$N);
         $result=$query->execute();
         if($result)
         {
@@ -46,7 +47,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST" && isset($_POST['submit']))
         }
         else
         {
-            header("Location:payment.php?msg=Error!+Order+Has+Not+Been+Processed:+Error+Code+1");
+            header("Location:payment.php?msg=Error!+Order+Has+Not+Been+Processed:+Error+Code+1+///$custID");
         }
         $query->close();
     }
