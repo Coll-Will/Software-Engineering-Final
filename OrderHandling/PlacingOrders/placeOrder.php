@@ -43,7 +43,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST" && isset($_POST['submit']))
         $result=$query->execute();
         if($result)
         {
-            header("Location:../index.php");
+            header("Location:../../index.php");
         }
         else
         {
