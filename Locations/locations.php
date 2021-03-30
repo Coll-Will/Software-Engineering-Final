@@ -51,7 +51,7 @@
          <div class="container">
              <h2 style = "text-align:center; padding-bottom: 30px; padding-top: 15px;">Our Locations</h2>
              <div class="row">
-                 <div class="form-group" style="width: 100vw">
+                 <div style="width: 100vw">
                      <p style="text-align: center"> <?php getWarehouses() ?>  </p>
                  </div>
              </div>
