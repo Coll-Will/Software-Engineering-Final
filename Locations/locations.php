@@ -8,12 +8,6 @@
     if($result = mysqli_query($db, $query)){
         if(mysqli_num_rows($result) > 0){
           echo "<table style='display:inline-block'>";
-              echo "<tr>";
-                  #echo "<th> street </th>";
-                  #echo "<th> city </th>";
-                  #echo "<th> state </th>";
-                  #echo "<th> zip </th>";
-              echo "</tr>";
           while($row = mysqli_fetch_array($result)){
               echo "<tr>";
                   echo "<td style='font-size:18; font-weight:bold; padding-top:8px'>" . $row['state'] . "</td>";
