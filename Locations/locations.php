@@ -30,7 +30,7 @@
  <link rel="stylesheet" href="styles.css"> <meta charset="utf-8">
      <head>
          <meta charset="UTF-8">
-         <title>My Account</title>
+         <title>Locations</title>
          <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
      </head>
      <style>
