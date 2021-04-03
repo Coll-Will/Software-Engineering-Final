@@ -18,6 +18,20 @@
     	.row{
     		margin-top: 10%;
     	}
+    	input {
+	      resize: horizontal;
+	      width: 50px;
+	    }
+	    .imgbox {
+            display: grid;
+            height: 100%;
+        }
+        .center-fit {
+            max-width: 100%;
+            max-height: 100vh;
+            margin: auto;
+        }
+
     </style>
   </head>
   <body>
@@ -32,30 +46,37 @@
         }
 
         echo "<div class = \"row\">";
+        if(!isset($_SESSION['sessionID']))
+	    {
+	    	echo "<h3 class =\"text-danger\" style = \"text-align:center\">Please login to add items to the cart</h3>";
+	    }
 
         $result = $query->get_result();
         while($item = $result->fetch_assoc())
         {
-          $itemName = $item['package_name'];
-          $price = $item['cost'];
-          $imgName = $item['imgName'];
-          $IID = $item['IID'];
-          $itemInfo = implode("|",$item);
-
+        	$itemName = $item['package_name'];
+          	$price = $item['cost'];
+          	$imgName = $item['imgName'];
+          	$IID = $item['IID'];
+          	$itemInfo = implode("|",$item);
 echo <<< _END
-          <div class = "col col-sm-4" style = "padding:20px; text-align:center">
-
-          <img src = "./productImages/$imgName" class = "rounded" alt = "$imgName" width= "300" height = "250">
-          <h4> $itemName $$price </h4>
-
-          <label for = "quantity">Quantity:</label>
-          <input id = "quantity"type="number" name="quantity">
-          <br>
-
-          <button type="button" value = "$itemInfo" id = "btn$IID" onclick = "addtocart(this)" class="btn btn-primary" style = "margin-top:15px">Add to Cart</button>
-
-          </div>
+          	<div class = "col col-sm-4" style = "padding:20px; text-align:center">
+          	<div class = \"imgbox\">
+          	<img src = "./productImages/$imgName" class = "center-fit" alt = "$imgName" height = "200" >
+          	
+          	<h4> $itemName $$price </h4>
 _END;
+          	if(isset($_SESSION['sessionID']))
+          	{
+echo <<< _END
+	          	<label for = "quantity">Quantity:</label>
+	          	<input id = "$IID" type="number" name="quantity">
+	          	<br>
+
+	          	<button type="button" value = "$itemInfo" id = "btn$IID" onclick = "addtocart(this)" class="btn btn-primary" style = "margin-top:15px">Add to Cart</button>
+_END;
+      		}
+      		echo "</div></div>";
         }
         echo"</div>";
       }
@@ -65,5 +86,6 @@ _END;
       }
       ?>
     </div>
+    <script type = "text/javascript" src ="./javascript/jsfuncscart.js"></script>
   </body>
 </html>
