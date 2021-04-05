@@ -12,7 +12,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Payment Information</title>
-    <style><?php include_once"pymt.css" ?></style>
+    <style><?php include_once "pymt.css" ?></style>
+
 </head>
 <body>
     <div class="wrapper">
@@ -73,13 +74,17 @@
                         <label for="security">CCV</label>
                         <input type="number" name="security" required>
                     </div>
+                    <input type = "hidden" id = "order" name = "order" value = "">
                 </div>
                 <div class="btns">
                     <input type="submit" name="submit" class="btn btn-primary" value="Place Order">
-                    <input type="button" value="Go Back" class="btn btn-primary" id="backBtn" onclick="document.location.href='./shoppingcart.php'">
+                    <input type="button" value="Go Back" class="btn btn-primary" id="backBtn" onclick="document.location.href='../cart.php'">
                 </div>
             </form>
         </div>
     </div>
+    <script type ="text/javascript" src = "../javascript/jsfunctions.js"></script>
+    <script type = "text/javascript">getOrderForServer();</script> <!-- Puts the order information inot the order field -->
+    
 </body>
 </html>

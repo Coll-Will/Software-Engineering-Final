@@ -33,28 +33,39 @@ if($_SERVER["REQUEST_METHOD"]=="POST" && isset($_POST['submit']))
     }
 
     //takes information from the customer table, inventory table, and warhouse table and adds it to the Shipments table to make the shipment in progress
-    if($query=$db->prepare("INSERT INTO shipments (IID,CID,MID,WID,to_street,to_city,to_state,to_zip,cancel,refund)VALUES (?,?,?,?,?,?,?,?,?,?)"))//This is the issue 
+    $order = json_decode($_POST['order'],true);
+    foreach($order as $key => $item)
     {
-    	$invID = 1;
-    	$warhID = 1;//temporary hard coded
-    	$manID = 1;
-    	$N = "N";
-        $query->bind_param('iiiisssiss', $invID,$custID,$manID,$warhID,$address,$city,$state,$zipcode,$N,$N);
-        $result=$query->execute();
-        if($result)
+        if($query=$db->prepare("INSERT INTO shipments (IID,CID,MID,WID,to_street,to_city,to_state,to_zip,cancel,refund)VALUES (?,?,?,?,?,?,?,?,?,?)"))
         {
-            header("Location:../../index.php");
+
+            $invID = $key;
+        	$warhID = rand(1,5);//temporarily hard coded
+        	$manID = rand(1,5);
+        	$N = "N";
+            $query->bind_param('iiiisssiss', $invID,$custID,$manID,$warhID,$address,$city,$state,$zipcode,$N,$N);
+            $result=$query->execute();
+            if(!$result)
+            {
+                echo "$order";
+                //header("Location:payment.php?msg=Error!+Order+Has+Not+Been+Processed:+Error+Code+1+|||$order|||");
+            }
         }
         else
         {
-            header("Location:payment.php?msg=Error!+Order+Has+Not+Been+Processed:+Error+Code+1+///$custID");
+            header("Location:payment.php?msg=Error!+Order+Has+Not+Been+Processed:+Error+Code+2");
         }
         $query->close();
     }
-    else
-    {
-        header("Location:payment.php?msg=Error!+Order+Has+Not+Been+Processed:+Error+Code+2");
-    }
+    
     mysqli_close($db);
 }
 ?>
+<!DOCTYPE html>
+<html lang="en">
+    <body>
+        <script type="text/javascript" src="http://localhost/Software-Engineering-FinalV4/OrderHandling/javascript/jsfunctions.js"></script>
+        <script type = "text/javascript">clearcartHTML();</script>
+        <script type = "text/javascript">redirect("http://localhost/Software-Engineering-FinalV4/index.php", "clearcart");</script>
+    </body>
+</html>
