@@ -6,11 +6,8 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- Bootstrap CSS -->
+   <!-- Bootstrap CSS -->
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
 
     <title>Store</title>
@@ -54,7 +51,7 @@
         $result = $query->get_result();
         while($item = $result->fetch_assoc())
         {
-        	$itemName = $item['package_name'];
+        	  $itemName = $item['package_name'];
           	$price = $item['cost'];
           	$imgName = $item['imgName'];
           	$IID = $item['IID'];
@@ -86,6 +83,6 @@ _END;
       }
       ?>
     </div>
-    <script type = "text/javascript" src ="./javascript/jsfuncscart.js"></script>
+    <script type = "text/javascript" src ="./javascript/jsfunctions.js"></script>
   </body>
 </html>
