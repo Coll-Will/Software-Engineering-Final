@@ -1,1 +1,1 @@
-dummy
+Database diagram created with MySQL Workbench. Can be opened and edit there if needed.
