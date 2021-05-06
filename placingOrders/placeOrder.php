@@ -32,6 +32,22 @@ if($_SERVER["REQUEST_METHOD"]=="POST" && isset($_POST['submit']))
     	header("Location:payment.html?msg=Something+Went+Wrong!");
     }
 
+ /*   if($locQuery =$db->prepare("SELECT WID, state, street, city, zip FROM warehouses"))
+    {
+        $places = $locQuery->execute();
+        if(!$places)
+        {
+            die("Locations could not be determined");
+        }
+        $places = $query->get_result();
+        $locationArr = array();
+        while($place = $places->fetch_assoc())
+        { 
+            $warehouse = array($place['WID'], $place['state'], $place['street'], $place['city']$place['zip']);
+            array_push($locationArr, $warehouse)
+        }
+    }*/
+
     //takes information from the customer table, inventory table, and warhouse table and adds it to the Shipments table to make the shipment in progress
     $order = json_decode($_POST['order'],true);
     foreach($order as $key => $item)
@@ -39,7 +55,9 @@ if($_SERVER["REQUEST_METHOD"]=="POST" && isset($_POST['submit']))
         if($query=$db->prepare("INSERT INTO shipments (IID,CID,MID,WID,to_street,to_city,to_state,to_zip,cur_street,cur_city,cur_state,cur_zip,status,remaining_nodes)VALUES (?,?,?,?,?,?,?,?,'','','','',?,'')"))
         {
             $invID = $key;
-        	$warhID = rand(1,5);
+            $rand = rand(1,24);
+        	//$warhID = $locations[$rand][0];
+            $warhID = $rand;
         	$manID = rand(1,5);
         	$status = 0;
             $query->bind_param('iiiisssii',$invID,$custID,$manID,$warhID,$address,$city,$state,$zipcode,$status);
@@ -63,7 +81,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST" && isset($_POST['submit']))
     <html lang="en">
         <body>
             <script type="text/javascript" src="./javascript/jsfunctions.js"></script>
-            <script type="text/javascript">clearCartHTML();</script>
+            <script type="text/javascript">clearcartHTML();</script>
             <script>alert(Order Complete!);</script>
             <script type = "text/javascript">redirect("http://localhost/DemoVersion/index.php", "clearcart");</script>
         </body>
