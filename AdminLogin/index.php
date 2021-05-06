@@ -19,7 +19,6 @@
     <form action="validate.php" method="post">
         <div class="login-box">
             <h1>Login</h1>
- 
             <div class="textbox">
                 <i class="fa fa-user" aria-hidden="true"></i>
                 <input type="text" placeholder="Adminname"
@@ -35,6 +34,13 @@
             <input class="button" type="submit"
                      name="login" value="Sign In">
         </div>
+        <?php
+        if(isset($_GET["msg"]))
+        {
+            $msg = $_GET["msg"];
+            echo "<h4 class = \"text-danger\" style =\"text-align:center;\">$msg</h4>";
+        }
+        ?>
     </form>
 </body>
 </html>

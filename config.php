@@ -1,11 +1,11 @@
 <?php
-	define('DBSERVER', 'localhost'); //Database server
-	define('DBUSERNAME', 'id16184555_username'); //DB user
-	define('DBPASSWORD', 'Password1234!'); //DB pass
-	define('DBNAME', 'id16184555_whereswalldo'); //DB name
+	$server = "localhost:3306";
+	$username = "root";
+	$dbname = "whereswalldo";
+	$pass = NULL;
 
  	//Connect to database
-	$db=mysqli_connect(DBSERVER, DBUSERNAME, DBPASSWORD, DBNAME);
+	$db=mysqli_connect($server, $username, $pass, $dbname);
 	
 	//checks DB connection
 	if($db==false) {

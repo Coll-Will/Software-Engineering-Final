@@ -34,11 +34,12 @@
           <h1 class="w3-margin w3-medium">Find your package by entering your tracking number below</h1>
 
           <!-- Input tracking number form -->
-          <form class="w3-container w3-card-3" style="width:40%" action="/action_page.php">
+          <form class="w3-container w3-card-3" style="width:40%" action="./packageTracking/findithandler.php" method="POST">
             <input class= "w3-input w3-border w3-round" name="tracking_number" type="text" placeholder = "XXX-XXX-XXX">
+            <button class="w3-button w3-black w3-padding-large w3-large w3-margin-top">Find it</button>
           </form>
 
-          <button class="w3-button w3-black w3-padding-large w3-large w3-margin-top">Find it</button>
+          
 
         </header>
 

@@ -9,7 +9,7 @@
 
   $warehouseID = $_POST["itemName"];
   $warehouseStock = $_POST["quantity"];
-  $sql = "UPDATE stock SET stock=$warehouseStock WHERE id=$warehouseID";
+  $sql = "UPDATE inventory SET stock=$warehouseStock WHERE IID=$warehouseID";
   if($conn->query($sql) === TRUE){
   	header("Location:./adminpage.php?msg=Stock+updated");
   }

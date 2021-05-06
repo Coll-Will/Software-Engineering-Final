@@ -18,6 +18,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST" && isset($_POST['submit']))
         $query->store_result(); //stores result to check if account exists in DB
         if($query->num_rows > 0) 
         {
+            $error =  "Error Code 0001";
             header("Location:signup.php?msg=Email+address+is+already+registered!");
         } 
         else 
@@ -25,17 +26,20 @@ if($_SERVER["REQUEST_METHOD"]=="POST" && isset($_POST['submit']))
             //validates password
             if(strlen($password) < 8) 
             {
+                $error =  "Error Code 0002";
                 header("Location:signup.php?msg=Password+must+be+at+least+8+characters");
             }
             //validates confirm password
             if(empty($confirm_password)) 
             {
+                $error =  "Error Code 0003";
                 header("Location:signup.php?msg=Please+Confirm+Password");
             } 
             else 
             {
                 if($password!=$confirm_password) 
                 {
+                    $error =  "Error Code 0004";
                     header("Location:signup.php?msg=Passwords+Do+Not+Match");
                 }
             }
@@ -54,6 +58,43 @@ if($_SERVER["REQUEST_METHOD"]=="POST" && isset($_POST['submit']))
                     $query->bind_result($CID);
                     while($query->fetch()){}
                     $_SESSION['sessionID'] = $CID;
+                    
+                    
+                    $to=$email;
+                    $msg= "Thanks for new Registration.";   
+                    $subject="Account Creation Successful";
+                    $headers = "From: wheres.waldo@irissoln.com" . "\r\n";
+                    $ms.='
+
+Thank you for signing up and creating an account with us!
+----------------------------
+Here at Wheres Walldo we value every new customer. We look forward to serving you and hope we meet every expectation for incredible service.
+----------------------------
+Please click this link to be directed back to login so you may begin your shopping:
+http://whereswalldo.000webhostapp.com/userlogin/login.php
+
+'
+                    ;
+
+                    ini_set('smtp_port', '587');
+                    ini_set('SMTP','smtp.fatcow.com');
+                    ini_set('smtp_server','smtp.fatcow.com' );
+                    ini_set('sendmail_from', 'wheres.waldo@irissoln.com');
+                    ini_set('auth_username','wheres.waldo@irissoln.com' );
+                    ini_set('auth_password','CSCI4320ww');
+                    ini_set('force_sender','wheres.waldo@irissoln.com');
+                    ini_set('hostname','localhost');
+
+                    if(mail($to,$subject,$ms,$headers)){
+
+                        echo "<script>alert('Registration successful, please look for the successful sign up email associated with your account');</script>";
+
+                    echo "<script>window.location = '../index.php';</script>";;
+                    }
+                
+
+
+                    
                     header("Location:../index.php");
                 }
                 else 
