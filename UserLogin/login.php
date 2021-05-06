@@ -22,6 +22,11 @@
             form {
                 margin:auto;
             }
+            footer{
+                margin-top:20%;
+                margin-left:auto;
+                margin-right:auto;
+            }
         </style>
     <body>
         <div class="container">
@@ -49,7 +54,9 @@
                     <p>Don't have an account yet? <a href="signup.php">Register here</a>!</p>
                 </form>
             </div>
+            <div class = "row" name = "footer">
+                <?php pagefooter() ?>
+            </div>
         </div>
-        <?php pagefooter() ?>
     </body>
 </html>

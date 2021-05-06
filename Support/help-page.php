@@ -47,6 +47,7 @@
 <body>
     <br>
     <br>
+    <br>
 <p>TRACKING AND RECEIVING SHIPMENTS</p>
 <button class="collapsible">The status of my package is "out for delivery." When will I receive it?</button>
 <div class="content">
@@ -78,6 +79,7 @@
 <div class="content">
   <p>Please contact the sender to stop delivery before the first delivery attempt.  Only the person who sent the package can cancel the delivery before the first attempt.</p>
 </div>
+<br>
 <p>CREATING AND SENDING SHIPMENTS</p>
 
 <button class="collapsible">How much will my shipment cost?</button>
@@ -94,6 +96,7 @@
 <div class="content">
   <p>You can print your labels and receipts after submitting your shipment information, or you can reprint from your shipping history.</p>
 </div>
+<br>
 <p>MANAGING YOUR PROFILE AND BILLING</p>
 
 <button class="collapsible">I've forgotten my username and password, or they no longer work. What should I do?</button>
@@ -105,6 +108,7 @@
 <div class="content">
   <p>You can see your previous statements by navigating to the "My Profile" page and selecting View and Pay Bill.</p>
 </div>
+<br>
 <p>TECHNICAL SUPPORT</p>
 
 <button class="collapsible">Contacts for technical support</button>

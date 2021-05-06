@@ -22,6 +22,6 @@ include_once('connection.php');
         header("Location:adminpage.php");
     }
     else{
-        header("Location: adnminlogin.php?msg=Invalid credentials!");
+        header("Location: index.php?msg=Invalid credentials!");
     }
 ?>

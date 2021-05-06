@@ -1,19 +1,19 @@
 <?php
-  require_once "../environment/pageformat.php";
+  require_once "../pageformat.php";
   pagenavbar();
   # --- FILL FIELDS --- #
   function getWarehouses(){
-    require_once "../environment/config.php";
+    require_once "../config.php";
     $query = "SELECT state, street, city, zip FROM warehouses";
     if($result = mysqli_query($db, $query)){
         if(mysqli_num_rows($result) > 0){
           echo "<table style='display:inline-block'>";
           while($row = mysqli_fetch_array($result)){
               echo "<tr>";
-                  echo "<td style='font-size:18; font-weight:bold; padding-top:8px'>" . $row['state'] . "</td>";
-                  echo "<td style='font-size:18; padding-left:16px; padding-top:8px'>" . $row['street'] . "</td>";
-                  echo "<td style='font-size:18; padding-left:16px; padding-top:8px'>" . $row['city'] . "</td>";
-                  echo "<td style='font-size:18; padding-left:16px; padding-top:8px'>" . $row['zip'] . "</td>";
+                  echo "<td style='font-size:14; font-weight:bold; padding-top:8px'>" . $row['state'] . "</td>";
+                  echo "<td style='font-size:14; padding-left:16px; padding-top:8px'>" . $row['street'] . "</td>";
+                  echo "<td style='font-size:14; padding-left:16px; padding-top:8px'>" . $row['city'] . "</td>";
+                  echo "<td style='font-size:14; padding-left:16px; padding-top:8px'>" . $row['zip'] . "</td>";
               echo "</tr>";
           }
           echo "</table>";
