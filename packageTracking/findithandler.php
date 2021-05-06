@@ -15,18 +15,10 @@
     <title>Tracking Orders</title>
     <style>
         .pad{
-            margin-left: 10%;
-            margin-right:10%;
-            margin-top:50%;
+            margin-top:8%;
         }
         table {
-          border-collapse: separate;
           border-spacing: 70px 0;
-        }
-        
-        td {
-          padding: 10px 0;
-          text-align:center;
         }
     </style>
   </head>
@@ -53,16 +45,18 @@
 
       echo<<<_END
 
-        <div class="w3-container w3-red pad">
-         <table>
-         <thead>
-         <tr>
-            <th scope="col">Street</th>
-            <th scope="col">City</th>
-            <th scope="col">State</th>
-            <th scope="col">Zip</th>
-         </tr>
-         </thead>  
+
+        <div class="w3-container pad" style = "margin-bottom:6%;">
+          <h2>Package Current Location:</h2>
+         <table class="table table-hover">
+          <thead>
+            <tr>
+              <th scope="col">Street</th>
+              <th scope="col">City</th>
+              <th scope="col">State</th>
+              <th scope="col">Zip</th>
+            </tr>
+          </thead>  
 _END;
 
       for($i=0; $i<$rows; $i++)
@@ -102,7 +96,7 @@ _END;
 		}
 		$rows=$result->num_rows;
 		echo<<<_END
-
+<h2 style = "margin-top:8%;">Package Information:</h2>
 <table class="table table-hover">
   <thead>
     <tr>

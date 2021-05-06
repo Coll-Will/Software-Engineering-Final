@@ -34,7 +34,7 @@
 	}
 	#footer {
         position:fixed;
-        bottom:0;
+        bottom:0px;
     }
 </style>
 <?php
@@ -43,14 +43,14 @@
 		if(isset($_SESSION['sessionID']))
 		{
 			$loginIcon ="<div class = \"login-container\">
-							<a href = \"http://localhost/DemoVersion/placingOrders/cart.php\" class=\"w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white\"><img src=\"http://localhost/DemoVersion/images/cart.png\" alt=\"cart.png\" width=\"25px\" height=\"25px\"></img></a>
-			                <a href=\"http://localhost/DemoVersion/myaccount/myaccount.php\" class=\"w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white\"><img src = \"http://localhost/DemoVersion/images/account.png\" width = \"25px\" height = \"25px\"></img></a>
-			    			<a href=\"http://localhost/DemoVersion/userlogin/logout.php\" class=\"w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white\">Logout</a>
+							<a href = \"http://localhost/DemoVersion/PlacingOrders/cart.php\" class=\"w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white\"><img src=\"http://localhost/DemoVersion/images/cart.png\" alt=\"cart.png\" width=\"25px\" height=\"25px\"></img></a>
+			                <a href=\"http://localhost/DemoVersion/MyAccount/myaccount.php\" class=\"w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white\"><img src = \"http://localhost/DemoVersion/images/account.png\" width = \"25px\" height = \"25px\"></img></a>
+			    			<a href=\"http://localhost/DemoVersion/UserLogin/logout.php\" class=\"w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white\">Logout</a>
 			    		</div>";
 		}
 		else{
 			$loginIcon = "<div class = \"login-container\">
-			    			<a href=\"http://localhost/DemoVersion/userlogin/login.php\" class = \"w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white\">Signup / Login</a>
+			    			<a href=\"http://localhost/DemoVersion/UserLogin/login.php\" class = \"w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white\">Signup / Login</a>
 			    		 </div>";
 		}
 
@@ -61,11 +61,11 @@ echo <<< _END
 
 				    <a href = "http://localhost/DemoVersion/index.php" class="w3-bar-item w3-text w3-padding-large w3-red" style = "text-decoration: none;">Where&#39;s Walldo?</a>
 
-				    <a href="http://localhost/DemoVersion/placingOrders/productStore.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Store</a>
+				    <a href="http://localhost/DemoVersion/PlacingOrders/productStore.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Store</a>
 
-				    <a href="http://localhost/DemoVersion/locations/locations.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Locations</a>
+				    <a href="http://localhost/DemoVersion/Locations/locations.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Locations</a>
 
-				    <a href="http://localhost/DemoVersion/support/help-page.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Support</a>
+				    <a href="http://localhost/DemoVersion/Support/help-page.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Support</a>
 
 					$loginIcon
 
@@ -77,16 +77,16 @@ _END;
 	function pagefooter()
 	{
 echo <<< _END
-		<footer class="w3-container w3-padding-64 w3-center w3-opacity" style = "inline"> 
+		<footer class="w3-container w3-padding-64 w3-center w3-opacity"> 
 			<div style = "font-family:Montserrat;">
-				<a href="http://localhost/DemoVersion/aboutwhereswalldo/aboutwhereswalldo.php" class="w3-button w3-padding-large w3-hover-white">About Where&#39;s Walldo</a>
+				<a href="http://localhost/DemoVersion/AboutWheresWalldo/aboutwhereswalldo.php" class="w3-button w3-padding-large w3-hover-white">About Where&#39;s Walldo</a>
 				<a href="http://localhost/DemoVersion/AboutUs/aboutus.php" class="w3-button w3-padding-large w3-hover-white">About Our Team</a>
-		    	<a href="http://localhost/DemoVersion/contactForm/fcf.form.php" class="w3-button w3-padding-large w3-hover-white">Contact Us</a>
-		    	<a href="http://localhost/DemoVersion/termsOfService/termsOfService.php" class="w3-button w3-padding-large w3-hover-white">Our Terms of Service</a>
+		    	<a href="http://localhost/DemoVersion/ContactForm/fcf.form.php" class="w3-button w3-padding-large w3-hover-white">Contact Us</a>
+		    	<a href="http://localhost/DemoVersion/TermsOfService/termsOfService.php" class="w3-button w3-padding-large w3-hover-white">Our Terms of Service</a>
 		    	<a href="http://localhost/DemoVersion/CareersPage/careers.php" class="w3-button w3-padding-large w3-hover-white">Careers</a>
 		    	<a href="http://localhost/DemoVersion/AdminLogin/index.php" class="w3-button w3-padding-large w3-hover-white">Admin Login</a>
 			</div>
-			<div class="w3-xlarge w3-padding-32">
+			<div class="w3-xlarge">
 			  	<i class="fa fa-facebook-official w3-hover-opacity"></i>
 			  	<i class="fa fa-instagram w3-hover-opacity"></i>
 				<i class="fa fa-linkedin w3-hover-opacity"></i>
